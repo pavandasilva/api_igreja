@@ -1,0 +1,22 @@
+{
+  "name": "restfull",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/server.js"
+  },
+  "author": "Rogério Pavan da Silva",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "debug": "^4.1.0",
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "g": "^2.0.1",
+    "nodemon": "^1.18.8"
+  }
+}

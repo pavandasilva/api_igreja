@@ -20,6 +20,7 @@ exports.get = ((req, res) => {
     mysql_connection.query(sql, (error, rows, fields) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        
         res.status(200).json(rows);
     });
 

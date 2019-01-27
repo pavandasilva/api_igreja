@@ -2,7 +2,7 @@ const mysql_connection = require('../../config/mysql_connection');
 
 exports.get = ((req, res) => {
    /* GET audios */
-   const sql = 
+    const sql = 
         'SELECT ' +
             'audios.audio_id, ' + 
             'audios.titulo, ' +
@@ -14,7 +14,7 @@ exports.get = ((req, res) => {
         'FROM audios ' +
         'INNER JOIN categorias_audi ' +
         'ON audios.categoria_audi_id = categorias_audi.categoria_audi_id';
-   
+    
     mysql_connection.query(sql, (error, rows, fields) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

@@ -61,7 +61,7 @@ exports.postUsuarios = (req, res) => {
         codigo = codigo + Math.floor(Math.random() * 10);
     } 
     
-    res.status(500).json({ "error_code": Math.floor(Math.random() * 10) });
+    res.status(500).json({ "error_code": codigo });
     return;
 
     mysql_connection.query(

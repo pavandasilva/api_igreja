@@ -67,11 +67,7 @@ exports.postUsuarios = (req, res) => {
                 return;
             }
 
-            res.status(201).send({
-                restfull: "clientes",
-                method: "post",
-                req: result
-            });
+            res.status(201).json({"error_code": "cadastroi" });
         }); 
      
 };

@@ -5,6 +5,8 @@ const saltRounds = 10;
 /* GET usuários comuns */
 exports.getUsuarios = (req, res) => {
     mysql_connection.query('SELECT pessoa_id, nome, aniversario, ativo, foto, dt_cadastro FROM pessoas WHERE e_admin = "N"', (error, rows, fields) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.status(200).json(rows);
     });
 };
@@ -50,6 +52,9 @@ exports.postUsuariosLogin = (req, res) => {
 };
 
 exports.postUsuarios = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     /* Gera um coidgo de 4 dígitos */
     let codigo = '';
     while (codigo.length < 4)

@@ -55,6 +55,15 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
+    /* Gera um coidgo de 4 dígitos */
+    let codigo;
+    while (codigo.length < 4){
+        codigo = codigo + Math.floor(Math.random() * 10);
+    }
+    
+    res.status(500).json({ "error_code": codigo });
+    return;
+
     mysql_connection.query(
         'SELECT * FROM pessoas WHERE celular = ?',
        [req.body.celular], 
@@ -69,14 +78,10 @@ exports.postUsuarios = (req, res) => {
     bcrypt.hash(req.body.senha, saltRounds, (err, hash) =>{
         let senha = hash;
 
-        /* Gera um coidgo de 4 dígitos */
-        let codigo;
-        while (codigo.length < 4){
-            codigo = codigo + Math.floor(Math.random() * 10);
-        }
-        res.status(201).json({"teste":codigo});
-        return;
-        bcrypt.hash(), saltRounds, (err, hash) =>{
+        
+
+        
+        bcrypt.hash(Math.floor(Math.random() * 10), saltRounds, (err, hash) =>{
             let codigo = hash;
             
             mysql_connection.query(

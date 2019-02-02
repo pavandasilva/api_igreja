@@ -57,13 +57,9 @@ exports.postUsuarios = (req, res) => {
 
     /* Gera um coidgo de 4 dígitos */
     let codigo = '';
-    while (codigo.length < 4){
+    while (codigo.length < 4)
         codigo = codigo + Math.floor(Math.random() * 10);
-    } 
-    
-    res.status(500).json({ "error_code": codigo });
-    return;
-
+     
     mysql_connection.query(
         'SELECT * FROM pessoas WHERE celular = ?',
        [req.body.celular], 
@@ -78,11 +74,8 @@ exports.postUsuarios = (req, res) => {
     bcrypt.hash(req.body.senha, saltRounds, (err, hash) =>{
         let senha = hash;
 
-        
-
-        
         bcrypt.hash(Math.floor(Math.random() * 10), saltRounds, (err, hash) =>{
-            let codigo = hash;
+            codigo = hash;
             
             mysql_connection.query(
                 'INSERT INTO pessoas(nome, aniversario, senha, celular, codigo) VALUES(?, ?, ?, ?, ?)',

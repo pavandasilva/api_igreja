@@ -55,9 +55,15 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
+    res.status(201).send({
+        restfull: "clientes",
+        method: "post",
+        req: req
+    });
+
     
-        mysql_connection.query(
-            'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) VALUES(?, ?, ?, ?, "N", ?)'
+        /* mysql_connection.query(
+            'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) VALUES(?, ?, ?, ?, "N", ?)',
             [req.body.nome, req.body.aniversario, req.body.email, req.body.senha, req.body.celular],
             (error, result) => {
                 if (error) {
@@ -71,7 +77,7 @@ exports.postUsuarios = (req, res) => {
                     method: "post",
                     req: result
                 });
-            });
+            }); */
      
 };
 

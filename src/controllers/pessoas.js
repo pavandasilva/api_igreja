@@ -55,7 +55,7 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-    res.status(201).json({"error_code": req.body.aniversario });
+    res.status(201).json({"error_code": req.body.email });
 
     return;
 

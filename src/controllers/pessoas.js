@@ -14,7 +14,7 @@ exports.getUsuarios = (req, res) => {
 /* GET usuarios comuns por id */
 exports.getUsuarioId = (req, res) => {
     mysql_connection.query(
-        'SELECT pessoa_id, nome, aniversario, ativo, foto, dt_cadastro, email FROM pessoas WHERE e_admin = "N" AND  pessoa_id = ?',
+        'SELECT pessoa_id, nome, aniversario, ativo, foto, dt_cadastro FROM pessoas WHERE e_admin = "N" AND  pessoa_id = ?',
         [req.params.pessoa_id],
         (error, rows) => {
             if (error) {

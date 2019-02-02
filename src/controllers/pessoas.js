@@ -55,6 +55,10 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
+    res.status(201).json({"error_code": req.body.nome });
+
+    return;
+
     
     mysql_connection.query(
         'INSERT INTO pessoas(nome, aniversario, email, senha, celular) VALUES(?, ?, ?, ?, ?)',

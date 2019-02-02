@@ -1,5 +1,8 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');const cors = require('cors');
+const express = require('express');
+let app = express();
+app.use(cors());
 const app = express();
 
 /* rotas */
@@ -25,5 +28,7 @@ app.use('/audios', audios);
 app.use('/oracoes', oracoes);
 app.use('/eventos', eventos);
 app.use('/chat', chat);
+
+app.options('*', cors());
 
 module.exports = app;

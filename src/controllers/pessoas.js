@@ -67,10 +67,14 @@ exports.postUsuarios = (req, res) => {
     );
  
     bcrypt.hash(req.body.senha, saltRounds, (err, hash) =>{
-        bcrypt.hash(Math.floor(Math.random() * 10), saltRounds, (err, codigo) =>{
+        let senha = hash;
+        
+        bcrypt.hash(Math.floor(Math.random() * 10), saltRounds, (err, hash) =>{
+            let codigo = hash;
+            
             mysql_connection.query(
                 'INSERT INTO pessoas(nome, aniversario, senha, celular, codigo) VALUES(?, ?, ?, ?, ?)',
-                [req.body.nome, req.body.aniversario, hash, req.body.celular, codigo], 
+                [req.body.nome, req.body.aniversario, senha, req.body.celular, codigo], 
         
                 (error, result) => {
                     if (error) {

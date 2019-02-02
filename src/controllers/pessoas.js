@@ -51,8 +51,8 @@ exports.postUsuariosLogin = (req, res) => {
         });
 };
 
-exports.post = (req, res) => {
-    bcrypt.hash(req.body.senha, saltRounds, function(err, hash) {
+exports.postUsuarios = (req, res) => {
+    bcrypt.hash(req.body.senha, saltRounds, function(error, hash) {
         mysql_connection.query(
             'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) values(?, ?, ?, ?, "N", ?)'
             [req.body.nome, req.body.aniversario, req.body.email, hash, req.body.celular],

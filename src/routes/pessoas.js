@@ -4,7 +4,7 @@ const controller = require('../controllers/pessoas');
 
 router.get('/usuarios', controller.getUsuarios);
 router.get('/usuarios/:pessoa_id', controller.getUsuarioId);
-router.post('/usuarios', controller.postUsuariosLogin);
+router.post('/usuarios', controller.postUsuarios);
 router.post('/usuarios/login', controller.postUsuariosLogin);
 /* router.get('/:pessoa_id', controller.getId);
 router.post('/', controller.post);

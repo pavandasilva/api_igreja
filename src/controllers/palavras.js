@@ -14,8 +14,6 @@ exports.getExibida = (req, res) => {
                     mysql_connection.query('UPDATE palavras SET ja_exibida = "N"');
             }); 
         }
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.status(200).json(rows); 
     });
 };

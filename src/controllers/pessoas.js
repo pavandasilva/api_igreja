@@ -55,7 +55,7 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-    res.status(201).json(req);
+    res.status(201).json({ "res": "401" });
 
     
         /* mysql_connection.query(

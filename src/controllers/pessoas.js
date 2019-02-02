@@ -52,9 +52,12 @@ exports.postUsuariosLogin = (req, res) => {
 };
 
 exports.postUsuarios = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     bcrypt.hash(req.body.senha, saltRounds, function(error, hash) {
         mysql_connection.query(
-            'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) values(?, ?, ?, ?, "N", ?)'
+            'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) VALUES(?, ?, ?, ?, "N", ?)'
             [req.body.nome, req.body.aniversario, req.body.email, hash, req.body.celular],
             (error, result) => {
                 if (error) {
@@ -62,9 +65,7 @@ exports.postUsuarios = (req, res) => {
                     res.status(500).json({ "error_code": error.code });
                     return;
                 }
-                res.header("Access-Control-Allow-Origin", "*");
-                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-               
+    
                 res.status(201).send({
                     restfull: "clientes",
                     method: "post",

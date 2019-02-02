@@ -52,11 +52,10 @@ exports.postUsuariosLogin = (req, res) => {
 };
 
 exports.postUsuarios = (req, res) => {
-    res.status(201).send({
-        restfull: "clientes",
-        method: "post",
-        req: req
-    });
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    res.status(201).json(req);
 
     
         /* mysql_connection.query(

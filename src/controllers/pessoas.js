@@ -29,10 +29,11 @@ exports.getUsuarioId = (req, res) => {
 
 /* POST Login usuário comum */
 exports.postUsuariosLogin = (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-     // Request methods you wish to allow
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Origin', 'example.com');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
 
     mysql_connection.query(
         'SELECT pessoa_id, nome, aniversario, ativo, foto, dt_cadastro, celular, senha FROM pessoas WHERE e_admin = "N" AND celular = ?',

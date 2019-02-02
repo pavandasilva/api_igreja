@@ -55,14 +55,9 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-    res.status(201).json({"error_code": req.body.email });
-
-    return;
-
-    
     mysql_connection.query(
-        'INSERT INTO pessoas(nome, aniversario, email, senha, celular) VALUES(?, ?, ?, ?, ?)',
-       [req.body.nome, req.body.aniversario, req.body.email, req.body.senha, req.body.celular], 
+        'INSERT INTO pessoas(nome, aniversario, senha, celular) VALUES(?, ?, ?, ?)',
+       [req.body.nome, req.body.aniversario,  req.body.senha, req.body.celular], 
 
         (error, result) => {
             if (error) {
@@ -71,7 +66,7 @@ exports.postUsuarios = (req, res) => {
                 return;
             }
 
-            res.status(201).json({"error_code": "cadastroi" });
+            res.status(201).json(result);
         }); 
      
 };

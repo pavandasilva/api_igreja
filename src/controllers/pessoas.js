@@ -55,25 +55,23 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-    res.status(201).json({ "res": "401" });
+    
+    mysql_connection.query(
+        'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) VALUES("10", "10", "10", "10", "N", "10")',
+        [req.body.nome, req.body.aniversario, req.body.email, req.body.senha, req.body.celular],
+        (error, result) => {
+            if (error) {
+                console.log(error);
+                res.status(500).json({ "error_code": error.code });
+                return;
+            }
 
-    
-        /* mysql_connection.query(
-            'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) VALUES(?, ?, ?, ?, "N", ?)',
-            [req.body.nome, req.body.aniversario, req.body.email, req.body.senha, req.body.celular],
-            (error, result) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).json({ "error_code": error.code });
-                    return;
-                }
-    
-                res.status(201).send({
-                    restfull: "clientes",
-                    method: "post",
-                    req: result
-                });
-            }); */
+            res.status(201).send({
+                restfull: "clientes",
+                method: "post",
+                req: result
+            });
+        }); 
      
 };
 

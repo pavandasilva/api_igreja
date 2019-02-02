@@ -56,7 +56,7 @@ exports.post = (req, res) => {
         mysql_connection.query(
             'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) values(?, ?, ?, ?, "N", ?)'
             [req.body.nome, req.body.aniversario, req.body.email, hash, req.body.celular],
-            (error) => {
+            (error, result) => {
                 if (error) {
                     console.log(error);
                     res.status(500).json({ "error_code": error.code });
@@ -66,7 +66,7 @@ exports.post = (req, res) => {
                 res.status(201).send({
                     restfull: "clientes",
                     method: "post",
-                    req: req.body
+                    req: result
                 });
             });
     });  

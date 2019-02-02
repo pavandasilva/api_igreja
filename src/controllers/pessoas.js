@@ -52,11 +52,24 @@ exports.postUsuariosLogin = (req, res) => {
 };
 
 exports.post = (req, res) => {
-    res.status(201).send({
-        restfull: "clientes",
-        method: "post",
-        req: req.body
-    });
+    bcrypt.hash(req.body.senha, saltRounds, function(err, hash) {
+        mysql_connection.query(
+            'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) values(?, ?, ?, ?, "N", ?)'
+            [req.body.nome, req.body.aniversario, req.body.email, hash, req.body.celular],
+            (error) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).json({ "error_code": error.code });
+                    return;
+                }
+               
+                res.status(201).send({
+                    restfull: "clientes",
+                    method: "post",
+                    req: req.body
+                });
+            });
+    });  
 };
 
 exports.put = (req, res) => {

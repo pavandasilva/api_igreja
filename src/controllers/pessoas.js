@@ -55,6 +55,17 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
+    mysql_connection.query(
+        'SELECT * FROM pessoas WHERE celular = ?',
+       [req.body.celular], 
+        ((error, rows) => {
+            if (rows.length) {
+                res.status(409).json({"error_code": "Celular já cadastrado"});  
+                return;
+            }
+        })
+    );
+    
     bcrypt.hash( req.body.senha, saltRounds, (err, hash) =>{
         mysql_connection.query(
             'INSERT INTO pessoas(nome, aniversario, senha, celular) VALUES(?, ?, ?, ?)',

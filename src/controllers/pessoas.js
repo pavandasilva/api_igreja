@@ -65,21 +65,24 @@ exports.postUsuarios = (req, res) => {
             }
         })
     );
-    
-    bcrypt.hash( req.body.senha, saltRounds, (err, hash) =>{
-        mysql_connection.query(
-            'INSERT INTO pessoas(nome, aniversario, senha, celular) VALUES(?, ?, ?, ?)',
-           [req.body.nome, req.body.aniversario, hash, req.body.celular], 
-    
-            (error, result) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).json({ "error_code": error.code });
-                    return;
-                }
-    
-                res.status(201).json(result);
-            }); 
+ 
+    bcrypt.hash(req.body.senha, saltRounds, (err, hash) =>{
+        bcrypt.hash(Math.floor(Math.random() * 10), saltRounds, (err, codigo) =>{
+            mysql_connection.query(
+                'INSERT INTO pessoas(nome, aniversario, senha, celular, codigo) VALUES(?, ?, ?, ?, ?)',
+                [req.body.nome, req.body.aniversario, hash, req.body.celular, codigo], 
+        
+                (error, result) => {
+                    if (error) {
+                        console.log(error);
+                        res.status(500).json({ "error_code": error.code });
+                        return;
+                    }
+        
+                    res.status(201).json(result);
+                }); 
+
+        }); 
     });  
 };
 

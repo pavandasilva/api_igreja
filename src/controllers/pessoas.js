@@ -4,7 +4,7 @@ const saltRounds = 10;
 
 /* GET usuários comuns */
 exports.getUsuarios = (req, res) => {
-    mysql_connection.query('SELECT pessoa_id, nome, aniversario, ativo, foto, dt_cadastro, email FROM pessoas WHERE e_admin = "N"', (error, rows, fields) => {
+    mysql_connection.query('SELECT pessoa_id, nome, aniversario, ativo, foto, dt_cadastro FROM pessoas WHERE e_admin = "N"', (error, rows, fields) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.status(200).json(rows);

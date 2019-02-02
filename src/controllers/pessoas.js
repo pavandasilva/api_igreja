@@ -74,7 +74,7 @@ exports.postUsuarios = (req, res) => {
     bcrypt.hash(req.body.senha, saltRounds, (err, hash) =>{
         let senha = hash;
 
-        bcrypt.hash(Math.floor(Math.random() * 10), saltRounds, (err, hash) =>{
+        bcrypt.hash(codigo, saltRounds, (err, hash) =>{
             codigo = hash;
             
             mysql_connection.query(

@@ -1,9 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');const cors = require('cors');
 const express = require('express');
-let app = express();
-app.use(cors());
 const app = express();
+const cors = require('cors');
 
 /* rotas */
 const index = require('./routes/index');
@@ -14,6 +13,7 @@ const oracoes = require('./routes/oracoes');
 const eventos = require('./routes/eventos');
 const chat = require('./routes/chat');
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({

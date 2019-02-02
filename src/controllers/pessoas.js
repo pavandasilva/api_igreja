@@ -56,12 +56,12 @@ exports.postUsuarios = (req, res) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
     /* Gera um coidgo de 4 dígitos */
-    let codigo;
+    /* let codigo;
     while (codigo.length < 4){
         codigo = codigo + Math.floor(Math.random() * 10);
-    }
+    } */
     
-    res.status(500).json({ "error_code": codigo });
+    res.status(500).json({ "error_code": Math.floor(Math.random() * 10) });
     return;
 
     mysql_connection.query(

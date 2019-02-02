@@ -57,8 +57,9 @@ exports.postUsuarios = (req, res) => {
 
     
     mysql_connection.query(
-        'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) VALUES("10", "10", "10", "10", "N", "10")',
+        'INSERT INTO pessoas(nome, aniversario, email, senha, e_admin, celular) VALUES(?, ?, ?, ?, "N", ?)',
         [req.body.nome, req.body.aniversario, req.body.email, req.body.senha, req.body.celular],
+        ["Rogerio", "27011984", "r", "r", "r"],
         (error, result) => {
             if (error) {
                 console.log(error);

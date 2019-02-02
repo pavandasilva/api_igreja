@@ -29,6 +29,9 @@ exports.getUsuarioId = (req, res) => {
 
 /* POST Login usuário comum */
 exports.postUsuariosLogin = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     mysql_connection.query(
         'SELECT pessoa_id, nome, aniversario, ativo, foto, dt_cadastro, celular, senha FROM pessoas WHERE e_admin = "N" AND celular = ?',
         [req.body.celular],

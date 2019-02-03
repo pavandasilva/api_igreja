@@ -3,5 +3,5 @@ const router = express.Router();
 const controller = require('../controllers/audios');
 
 router.get('/', controller.get);
-router.put('/', controller.get);
+router.post('/', controller.post);
 module.exports = router;

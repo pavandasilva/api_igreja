@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
 
     if (!authHeader) return res.status(401).send({ error: 'Token não informado' });
 
-    jwt.verify(token, autenticacao.secret, (error, decoded) => {
+    jwt.verify(authHeader, autenticacao.secret, (error, decoded) => {
         if (error) return res.status(401).send({error: 'Token inválido'})
 
         req.pessoa_id = decoded.pessoa_id;

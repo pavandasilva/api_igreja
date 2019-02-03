@@ -21,12 +21,6 @@ exports.post = (req, res) => {
 
             res.status(201).json(result);
         });
-
-    res.status(201).send({
-        restfull: "chat",
-        method: "post",
-        req: req.body
-    });
 };
 
 exports.put = (req, res) => {

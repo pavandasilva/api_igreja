@@ -8,7 +8,7 @@ exports.get = ((req, res) => {
     });
 });
 
-exports.post = (req, res) => {
+exports.post = ((req, res) => {
 
     res.status(200).send(req.body.texto);
     return;
@@ -30,7 +30,7 @@ exports.post = (req, res) => {
 
             res.status(201).json({chat_id: result.insertId});
         });
-};
+});
 
 exports.put = (req, res) => {
     res.status(201).send({

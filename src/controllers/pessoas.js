@@ -1,5 +1,7 @@
 const mysql_connection = require('../../config/mysql_connection');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const autenticacao = require('../../config/autenticacao');
 const saltRounds = 10;
 
 /* GET usuários comuns */
@@ -40,8 +42,15 @@ exports.postUsuariosLogin = (req, res) => {
             }
             if (rows.length) {
                 bcrypt.compare(req.body.senha, rows[0].senha).then(r => {
-                    if (r)
+                    if (r){
+                        let token = jwt.sign({ pessoa_id: rows[0].pessoa_id}, autenticacao.secret, {
+                            expiresIn: 604800
+                        });
+
+                        rows[0].token = token;
                         res.status(201).json(rows[0]);
+                    }
+                        
                     else
                         res.status(401).json({ "error_code": 401 });
                 });

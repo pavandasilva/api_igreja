@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
+app.options('*', cors());
 
 /* rotas */
 const index = require('./routes/index');

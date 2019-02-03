@@ -28,6 +28,6 @@ app.use('/palavras', palavras)
 app.use('/audios', audios);
 app.use('/oracoes', oracoes);
 app.use('/eventos', eventos);
-app.use('/chats', chats);
+/* app.use('/chats', chats); */
 
 module.exports = app;

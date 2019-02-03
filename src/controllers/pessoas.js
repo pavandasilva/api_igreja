@@ -43,14 +43,22 @@ exports.postUsuariosLogin = (req, res) => {
             if (rows.length) {
                 bcrypt.compare(req.body.senha, rows[0].senha).then(r => {
                     if (r){
-                        let token = jwt.sign({ pessoa_id: rows[0].pessoa_id}, autenticacao.secret, {
+                        let g_token = jwt.sign({ pessoa_id: rows[0].pessoa_id}, autenticacao.secret, {
                             expiresIn: 604800
                         });
-                        rows[0].splice(7, 1);
-                        rows[0].token = token;
-                        res.status(201).json(rows[0]);
-                    }
                         
+                        res.status(201).json({
+                            pessoa_id:  rows[0].pessoa_id,
+                            nome:  rows[0].nome,
+                            aniversario:  rows[0].aniversario,
+                            ativo:  rows[0].ativo,
+                            foto:  rows[0].foto,
+                            dt_cadastro: rows[0].dt_cadastro,
+                            celular: rows[0].celular,
+                            token: g_token,
+                        });
+                    }
+                    
                     else
                         res.status(401).json({ "error_code": 401 });
                 });

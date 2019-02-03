@@ -13,6 +13,7 @@ const palavras = require('./routes/palavras');
 const audios = require('./routes/audios');
 const oracoes = require('./routes/oracoes');
 const eventos = require('./routes/eventos');
+const chats = require('./routes/chats');
 
 app.use(bodyParser.json());
 
@@ -27,5 +28,6 @@ app.use('/palavras', palavras)
 app.use('/audios', audios);
 app.use('/oracoes', oracoes);
 app.use('/eventos', eventos);
+app.use('/chats', chats);
 
 module.exports = app;

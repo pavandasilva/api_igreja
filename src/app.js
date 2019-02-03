@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
-const cors = require('cors');
-
 /* rotas */
 const index = require('./routes/index');
 const pessoas = require('./routes/pessoas');
@@ -13,7 +11,6 @@ const oracoes = require('./routes/oracoes');
 const eventos = require('./routes/eventos');
 const chat = require('./routes/chat');
 
-app.use(cors());
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
@@ -29,6 +26,6 @@ app.use('/oracoes', oracoes);
 app.use('/eventos', eventos);
 app.use('/chat', chat);
 
-app.options('*', cors());
+
 
 module.exports = app;

@@ -31,7 +31,7 @@ exports.post = (req, res) => {
 
 exports.put = (req, res) => {
     res.status(201).send({
-        restfull: "chat",
+        restfull: "",
         method: "put",
         id: req.params.id,
         req: req.body,

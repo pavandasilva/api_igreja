@@ -46,7 +46,7 @@ exports.postUsuariosLogin = (req, res) => {
                         let token = jwt.sign({ pessoa_id: rows[0].pessoa_id}, autenticacao.secret, {
                             expiresIn: 604800
                         });
-
+                        rows[0].splice('senha', 1);
                         rows[0].token = token;
                         res.status(201).json(rows[0]);
                     }

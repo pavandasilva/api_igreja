@@ -69,12 +69,8 @@ exports.postUsuariosLogin = (req, res) => {
 };
 
 exports.postUsuarios = (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-    res.status(500).json({ "error_code": req.body.nome });
-
-    /* Gera um coidgo de 4 dígitos */
+    /* Gera um código de 4 dígitos */
     let codigo = '';
     while (codigo.length < 4)
         codigo = codigo + Math.floor(Math.random() * 10);

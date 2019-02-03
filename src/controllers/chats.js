@@ -9,11 +9,6 @@ exports.get = ((req, res) => {
 });
 
 exports.post = (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-    res.status(200).send(req.body.texto);
-    return;
    /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
     if(req.body.pessoa_id_rem != req.pessoa_id){
         res.status(401).json({error: "Você não tem autorização para enviar essa mensagem"});

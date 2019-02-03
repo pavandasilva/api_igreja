@@ -10,7 +10,7 @@ exports.get = ((req, res) => {
 
 exports.post = (req, res) => {
    /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
-    if(!req.body.pessoa_id_rem === req.pessoa_id){
+    if(req.body.pessoa_id_rem != req.pessoa_id){
         res.status(401).json({error: "Você não tem autorização para enviar essa mensagem"});
         return;
     }

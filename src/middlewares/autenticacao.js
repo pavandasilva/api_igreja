@@ -10,6 +10,7 @@ module.exports = (req, res, next) => {
         if (error) return res.status(401).send({error: 'Token inválido'})
 
         req.pessoa_id = decoded.pessoa_id;
+        req.body = req.body;
         return next();
     })
 };

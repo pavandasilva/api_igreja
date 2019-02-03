@@ -19,7 +19,7 @@ exports.post = (req, res) => {
                 return;
             }
 
-            res.status(201).json(result);
+            res.status(201).json({chat_id: result.insertId});
         });
 };
 

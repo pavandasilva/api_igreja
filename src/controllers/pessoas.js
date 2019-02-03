@@ -104,7 +104,7 @@ exports.postUsuarios = (req, res) => {
                         return;
                     }
         
-                    res.status(201).json(result);
+                    res.status(201).json({pessoa_id: result.insertId});
                 }); 
 
         }); 

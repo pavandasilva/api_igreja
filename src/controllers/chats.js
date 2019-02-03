@@ -1,11 +1,24 @@
 const mysql_connection = require('../../config/mysql_connection');
 
-exports.get = ((req, res) => {
-    res.status(201).send({
-        restfull: "chat",
-        method: "get",
-        req: req.body
-    });
+exports.getPorId = ((req, res) => {
+    /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
+    if(req.params.pessoa_id_rem != req.pessoa_id){
+        res.status(401).json({error: "Você não tem autorização para ler as mensagens"});
+        return;
+    }
+
+    mysql_connection.query(
+        'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto FROM chats WHERE pessoa_id_rem = ? AND pessoa_id_dest = ? ORDER BY dt_cadastro DESC',
+        [req.params.pessoa_id_rem, req.params.pessoa_id_dest],
+        (error, rows) => {
+            if (error) {
+                console.log(error);
+
+                res.status(500).json({ "error_code": error.code });
+            }
+            res.status(200).json(rows[0]);
+        }
+    );
 });
 
 exports.post = (req, res) => {

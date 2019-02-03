@@ -43,9 +43,7 @@ exports.postUsuariosLogin = (req, res) => {
             if (rows.length) {
                 bcrypt.compare(req.body.senha, rows[0].senha).then(r => {
                     if (r){
-                        let g_token = jwt.sign({ pessoa_id: rows[0].pessoa_id}, autenticacao.secret, {
-                            expiresIn: 604800
-                        });
+                        let g_token = jwt.sign({ pessoa_id: rows[0].pessoa_id}, autenticacao.secret);
                         
                         res.status(201).json({
                             pessoa_id:  rows[0].pessoa_id,

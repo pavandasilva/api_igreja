@@ -10,7 +10,7 @@ exports.get = ((req, res) => {
 
 exports.post = (req, res) => {
 
-    res.status(401).json({body: req.body});
+    res.status(401).json(req.body);
     return;
    /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
     if(req.body.pessoa_id_rem != req.pessoa_id){

@@ -38,7 +38,18 @@ exports.post = (req, res) => {
                 return;
             }
 
-            res.status(201).json({chat_id: result.insertId});
+            mysql_connection.query(
+                'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto FROM chats WHERE chat_id = ?',
+                [result.insertId],
+                (error, rows) => {
+                    if (error) {
+                        console.log(error);
+        
+                        res.status(500).json({ "error_code": error.code });
+                    }
+                    res.status(200).json(rows[0]);
+                }
+            );
         });
 };
 

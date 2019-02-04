@@ -8,8 +8,8 @@ exports.getPorId = ((req, res) => {
     }
 
     mysql_connection.query(
-        'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto FROM chats WHERE pessoa_id_rem = ? AND pessoa_id_dest = ? ORDER BY dt_cadastro DESC',
-        [req.params.pessoa_id_rem, req.params.pessoa_id_dest],
+        'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto FROM chats WHERE (pessoa_id_rem = ? AND pessoa_id_dest = ?) or (pessoa_id_rem = ? AND pessoa_id_dest = ?) ORDER BY dt_cadastro DESC',
+        [req.params.pessoa_id_rem, req.params.pessoa_id_dest, req.params.pessoa_id_dest, req.params.pessoa_id_rem ],
         (error, rows) => {
             if (error) {
                 console.log(error);

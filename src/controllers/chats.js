@@ -16,7 +16,7 @@ exports.getPorId = ((req, res) => {
 
                 res.status(500).json({ "error_code": error.code });
             }
-            res.status(200).json(rows[0]);
+            res.status(200).json(rows);
         }
     );
 });

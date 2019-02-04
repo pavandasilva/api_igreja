@@ -4,7 +4,7 @@ const controller = require('../controllers/chats');
 const authMiddleware = require('../middlewares/autenticacao');
 
 router.use(authMiddleware);
-router.get('/', controller.get);
+
 router.post('/', controller.post);
-/* router.get('/:pessoa_id_rem', controller.getPorId); */
+router.get('/:pessoa_id_rem', controller.getPorId);
 module.exports = router;

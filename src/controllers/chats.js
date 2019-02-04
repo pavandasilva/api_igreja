@@ -1,6 +1,6 @@
 const mysql_connection = require('../../config/mysql_connection');
 
-/* exports.getPorId = ((req, res) => {
+exports.getPorId = ((req, res) => {
     //  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token
     if(req.params.pessoa_id_rem != req.pessoa_id){
         res.status(401).json({error: "Você não tem autorização para ler as mensagens"});
@@ -19,7 +19,7 @@ const mysql_connection = require('../../config/mysql_connection');
             res.status(200).json(rows[0]);
         }
     );
-}); */
+});
 
 exports.post = (req, res) => {
    /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */

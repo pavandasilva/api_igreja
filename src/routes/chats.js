@@ -6,5 +6,5 @@ const authMiddleware = require('../middlewares/autenticacao');
 router.use(authMiddleware);
 
 router.post('/', controller.post);
-router.get('/:pessoa_id_rem', controller.getPorId);
+router.get('/:pessoa_id_rem/:pessoa_id_dest', controller.getPorId);
 module.exports = router;

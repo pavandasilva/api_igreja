@@ -14,7 +14,7 @@ io.on('connection', function (socket) {
 });
 
 
-module.exports = new Promise(function(resolve, reject) {
+module.exports = new Promise((resolve, reject) => {
     resolve('teste');    
 });
 

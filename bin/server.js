@@ -12,8 +12,14 @@ io.on('connection', function (socket) {
     socket.on('vinculacao', function(data){ console.log(data)});
 });
 
-exports.socket_teste =  new Promise(function (resolve, reject) {
-        return 'ola';
+var foo, callback;
+
+module.exports = new Promise(function(resolve, reject){
+    async.function(function(response) {
+        foo = "foobar"
+
+        resolve(foo);
+    });
 });
 
 

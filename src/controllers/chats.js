@@ -2,10 +2,6 @@ const mysql_connection = require('../../config/mysql_connection');
 var Promise = require("bluebird");
 var teste = require('../../bin/server');
 
-Promise.all([teste]).then(function(soon) {
-    console.log(soon);
-});
-
 exports.getPorId = ((req, res) => {
     //  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token
     if(req.params.pessoa_id_rem != req.pessoa_id){
@@ -28,9 +24,9 @@ exports.getPorId = ((req, res) => {
 });
 
 exports.post = (req, res) => {
-    
-    console.log('teste')
-    
+    Promise.all([teste]).then(function(soon) {
+        console.log(soon);
+    });
 
    /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
     if(req.body.pessoa_id_rem != req.pessoa_id){

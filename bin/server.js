@@ -14,18 +14,13 @@ io.on('connection', function (socket) {
 
 var foo, callback;
 
-module.exports = new Promise(function (resolve, reject) {
-
+var teste = new Promise(function (resolve, reject) {
     foo = "foobar"
-
     resolve(foo);
 });
 
-
-
-
-module.exports = io;
-
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);
-})
+});
+
+module.exports = teste;

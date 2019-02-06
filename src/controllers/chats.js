@@ -1,5 +1,5 @@
 const mysql_connection = require('../../config/mysql_connection');
-var fooMod = require('../../bin/server');
+var teste = require('../../bin/server');
 
 exports.getPorId = ((req, res) => {
     //  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token
@@ -23,7 +23,7 @@ exports.getPorId = ((req, res) => {
 });
 
 exports.post = (req, res) => {
-    fooMod.then(()=>{
+    teste.then(()=>{
         console.log('teste')
     })
 

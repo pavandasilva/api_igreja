@@ -9,7 +9,7 @@ const io = require('socket.io')(server);
 
 
 
-exports.socket = function(){
+var socket_io = function(){
     return new Promise(function (resolve, reject) {
         io.on('connection', function (socket) {
             console.log(socket.id);
@@ -20,7 +20,7 @@ exports.socket = function(){
 }
 
 
-module.exports = io;
+module.exports = socket_io;
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);

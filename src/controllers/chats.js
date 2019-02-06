@@ -1,5 +1,5 @@
 const mysql_connection = require('../../config/mysql_connection');
-const socket = require('../../bin/server.js');
+const socket_io = require('../../bin/server.js');
 
 exports.getPorId = ((req, res) => {
     //  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token
@@ -29,7 +29,7 @@ exports.post = (req, res) => {
         return;
     }
 
-    socket().then(function(res) {
+    socket_io().then(function(res) {
         console.log(res);
     });
 

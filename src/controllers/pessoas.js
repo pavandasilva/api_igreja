@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const autenticacao = require('../../config/autenticacao');
 const saltRounds = 10;
+const io = require('../bin/server');
 
 /* GET usuários comuns */
 exports.getUsuarios = (req, res) => {

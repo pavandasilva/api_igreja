@@ -6,7 +6,6 @@ const port = 3000;
 app.set('port', port);
 
 const server = http.createServer(app);
-const io = require('socket.io')(server);
 
 server.listen(port);
 server.on('listening', onListening);
@@ -22,5 +21,3 @@ function onListening() {
 
     debug('Listening on ' + bind);
 }
-
-module.exports = io;

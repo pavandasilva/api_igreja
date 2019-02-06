@@ -15,9 +15,9 @@ io.on('connection', function (socket) {
 var foo, callback;
 
 var teste = new Promise(function (resolve, reject) {
-    foo = "foobar"
+    foo = "foobar";
     resolve(foo);
-});
+});;
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);

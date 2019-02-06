@@ -23,9 +23,9 @@ exports.getPorId = ((req, res) => {
 });
 
 exports.post = (req, res) => {
-    teste.then(()=>{
-        console.log('teste')
-    })
+    
+    console.log('teste')
+    
 
    /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
     if(req.body.pessoa_id_rem != req.pessoa_id){

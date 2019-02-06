@@ -16,9 +16,9 @@ const mysql_connection = require('../config/mysql_connection');
 }); */
 
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
     socket.on('vinculacao', (data)=>{
-        console.log(data);
+        console.log(data.usuario_id);
     });
     
     /* mysql_connection.query(

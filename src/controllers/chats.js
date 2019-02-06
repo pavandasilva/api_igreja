@@ -22,7 +22,10 @@ exports.getPorId = ((req, res) => {
 });
 
 exports.post = (req, res) => {
-    var teste = require('../../bin/server').then(()=> console.log('teste'));
+    var teste = require('../../bin/server').then((socket)=>{ 
+        console.log(socket.id);
+        socket.on('vinculacao', function (data) { console.log(data) });
+    });
 
    /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
     if(req.body.pessoa_id_rem != req.pessoa_id){

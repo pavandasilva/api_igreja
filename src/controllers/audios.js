@@ -23,13 +23,13 @@ exports.get = ((req, res) => {
 
 });
 
-exports.post = (req, res) => {
+exports.post = ((req, res) => {
     res.status(201).send({
         restfull: "audios",
         method: "post",
         req: req.body
     });
-};
+});
 
 exports.put = (req, res) => {
     res.status(201).send({

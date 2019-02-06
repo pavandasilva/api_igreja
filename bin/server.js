@@ -12,9 +12,9 @@ const io = require('socket.io')(server);
 io.on('connection', (socket) => {
     console.log(socket.id);
 
-    socket.on('vinc_socket_id'), (data)=>{
+    /* socket.on('vinc_socket_id'), (data)=>{
         console.log(data);
-    };
+    }; */
 });
 
 server.listen(port);

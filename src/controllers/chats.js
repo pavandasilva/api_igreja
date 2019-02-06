@@ -1,5 +1,5 @@
 const mysql_connection = require('../../config/mysql_connection');
-const io = require('../bin/server.js');
+const io = require('../../bin/server.js');
 
 exports.getPorId = ((req, res) => {
     //  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token

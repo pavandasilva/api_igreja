@@ -10,12 +10,12 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 
 
-io.on('connection', function (connection) {
-    console.log(connection.id);
-});
+io.on('connection', (socket) => {
+    console.log(socket.id);
 
-io.on('vinc_socket_id', function (data) {
-    console.log(data);
+    socket.on('vinc_socket_id'), (data)=>{
+        console.log(data);
+    };
 });
 
 server.listen(port);

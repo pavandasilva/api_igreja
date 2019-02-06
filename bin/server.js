@@ -1,6 +1,7 @@
 const app = require('../src/app');
 const debug = require('debug')('igreja:server');
 const http = require('http');
+var fs = require('fs');
 const port = 3000;
 
 app.set('port', port);

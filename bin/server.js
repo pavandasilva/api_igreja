@@ -14,7 +14,7 @@ io.on('connection', function (connection) {
     console.log(connection.id);
 });
 
-io.on('my vinc_socket_id', function (data) {
+io.on('vinc_socket_id', function (data) {
     console.log(data);
 });
 

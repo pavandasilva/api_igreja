@@ -30,7 +30,7 @@ exports.post = (req, res) => {
     }
 
     io().then(function(res) {
-        console.log(res);
+        console.log('estou aqui');
     });
 
     mysql_connection.query(

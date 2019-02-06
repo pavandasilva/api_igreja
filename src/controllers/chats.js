@@ -24,7 +24,7 @@ exports.getPorId = ((req, res) => {
 });
 
 exports.post = (req, res) => {
-    Promise.all([teste]).then(function(soon) {
+    Promise.all([teste]).then((soon) => {
         console.log(soon);
     });
 

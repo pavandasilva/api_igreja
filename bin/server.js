@@ -1,7 +1,5 @@
 const app = require('../src/app');
-const debug = require('debug')('igreja:server');
 const http = require('http');
-var fs = require('fs');
 const port = 3000;
 
 app.set('port', port);
@@ -11,11 +9,10 @@ const io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
     console.log(socket.id);
-
     socket.on('vinculacao', function(data){ console.log(data)});
 });
 
-
+module.exports = io;
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);

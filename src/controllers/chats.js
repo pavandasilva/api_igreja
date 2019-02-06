@@ -1,4 +1,5 @@
 const mysql_connection = require('../../config/mysql_connection');
+const io = require('../bin/server.js');
 
 exports.getPorId = ((req, res) => {
     //  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token
@@ -27,6 +28,10 @@ exports.post = (req, res) => {
         res.status(401).json({error: "Você não tem autorização para enviar essa mensagem"});
         return;
     }
+
+    io().then(function(res) {
+        console.log(res);
+    });
 
     mysql_connection.query(
         'INSERT INTO chats(pessoa_id_dest, pessoa_id_rem, texto) VALUES(?, ?, ?)',

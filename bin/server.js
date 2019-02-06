@@ -11,7 +11,7 @@ const io = require('socket.io')(server);
 
 
 io.on('connection', function(connection) {
-    console.log('User Connected')
+    console.log(connection);
 });
 
 server.listen(port);

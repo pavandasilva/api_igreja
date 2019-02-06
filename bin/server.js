@@ -7,7 +7,7 @@ app.set('port', port);
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-const mysql_connection = require('../../config/mysql_connection');
+const mysql_connection = require('../config/mysql_connection');
 
 /* const socket_io = new Promise((resolve, reject) => {
     io.on('connection', function (socket) {

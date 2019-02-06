@@ -14,9 +14,11 @@ io.on('connection', function (socket) {
 });
 
 
-module.exports = new Promise((resolve, reject) => {
+teste = new Promise((resolve, reject) => {
     resolve('teste');    
 });
+
+module.exports = teste;
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);

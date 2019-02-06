@@ -1,4 +1,5 @@
 const mysql_connection = require('../../config/mysql_connection');
+const io = require('../../bin/server');
 
 exports.getPorId = ((req, res) => {
     //  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token
@@ -22,11 +23,6 @@ exports.getPorId = ((req, res) => {
 });
 
 exports.post = (req, res) => {
-    require('../../bin/server').then((socket) => {
-        console.log(socket.id);
-        socket.on('vinculacao', function (data) { console.log(data) });
-    });
-
     /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
     if (req.body.pessoa_id_rem != req.pessoa_id) {
         res.status(401).json({ error: "Você não tem autorização para enviar essa mensagem" });
@@ -44,15 +40,17 @@ exports.post = (req, res) => {
             }
 
             mysql_connection.query(
-                'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto FROM chats WHERE chat_id = ?',
-                [result.insertId],
+                'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto, (SELECT socket_id FROM pessoas where pessoa_id = ? as socket_id) FROM chats WHERE chat_id = ?',
+                [req.body.pessoa_id_dest, result.insertId],
                 (error, rows) => {
                     if (error) {
                         console.log(error);
 
                         res.status(500).json({ "error_code": error.code });
                     }
-                    res.status(201).json(rows[0]);
+                    if (rows[0].socket_id != ''){
+                        io.emit(rows[0].socket_id, json(rows[0]));
+                    }
                 }
             );
         });

@@ -10,12 +10,18 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 
 
-io.on('connection', function(connection) {
+io.on('connection', function (connection) {
     console.log(connection.id);
+});
+
+socket.on('my vinc_socket_id', function (data) {
+    console.log(data);
 });
 
 server.listen(port);
 server.on('listening', onListening);
+
+
 
 console.log('API rodando na porta ' + port);
 

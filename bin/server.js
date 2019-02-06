@@ -15,10 +15,6 @@ io.on('connection', function (socket) {
     socket.on('vinc_socket_id'), function (data) {
         console.log(data);
     };
-
-    socket.on('disconnect', function (data) {
-        io.emit('user disconnected ' + data.id);
-    });
 });
 
 

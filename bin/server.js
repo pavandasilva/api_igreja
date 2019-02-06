@@ -24,5 +24,5 @@ io.on('connection', function (socket) {
 
 
 server.listen(port, function () {
-    console.log('Listening to port ' + port);
+    console.log('Rodando na porta ' + port);
 })

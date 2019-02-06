@@ -7,16 +7,13 @@ app.set('port', port);
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-
-
-
-teste = new Promise((resolve, reject) => {
+const socket_io = new Promise((resolve, reject) => {
     io.on('connection', function (socket) {
         resolve(socket);
     });  
 });
 
-module.exports = teste;
+module.exports = socket_io;
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);

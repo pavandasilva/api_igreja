@@ -20,7 +20,7 @@ io.on('connection', function (socket) {
     socket.on('vinculacao', (data)=>{
         console.log(data.pessoa_id + ' ' + socket.id);
     });
-    console.log(socket);
+    
     /* mysql_connection.query(
         'UPDATE pessoas SET socket_id=? WHERE pessoa_id = ',
         [req.params.pessoa_id_rem, req.params.pessoa_id_dest, req.params.pessoa_id_dest, req.params.pessoa_id_rem],

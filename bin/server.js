@@ -1,6 +1,9 @@
 const app = require('../src/app');
 const http = require('http');
 const port = 3000;
+var Promise = require("bluebird");
+
+
 
 app.set('port', port);
 
@@ -12,15 +15,13 @@ io.on('connection', function (socket) {
     socket.on('vinculacao', function (data) { console.log(data) });
 });
 
-var foo, callback;
 
-var teste = new Promise(function (resolve, reject) {
-    foo = "foobar";
-    resolve(foo);
-});;
+module.exports = new Promise(function(resolve, reject) {
+    resolve('teste');    
+});
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);
 });
 
-module.exports = teste;
+

@@ -7,20 +7,18 @@ app.set('port', port);
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
+io.on('connection', function (socket) {
+    console.log(socket.id);
+    socket.on('vinculacao', function(data){ console.log(data)});
+});
+
+exports.socket =  new Promise(function (resolve, reject) {
+        return 'ola';
+});
 
 
-var socket_io = function(){
-    return new Promise(function (resolve, reject) {
-        io.on('connection', function (socket) {
-            console.log(socket.id);
-            return socket;
-            //socket.on('vinculacao', function(data){ console.log(data)});
-        });   
-    });
-}
 
-
-module.exports = socket_io;
+module.exports = io;
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);

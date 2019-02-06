@@ -18,21 +18,19 @@ const mysql_connection = require('../config/mysql_connection');
 
 io.on('connection', (socket) => {
     socket.on('vinculacao', (data)=>{
-        console.log(data.usuario_id + ' ' + socket.id);
-    });
-    
-    /* mysql_connection.query(
-        'UPDATE pessoas SET socket_id=? WHERE pessoa_id = ',
-        [req.params.pessoa_id_rem, req.params.pessoa_id_dest, req.params.pessoa_id_dest, req.params.pessoa_id_rem],
-        (error, rows) => {
-            if (error) {
-                console.log(error);
+        
+        mysql_connection.query(
+            'UPDATE pessoas SET socket_id= ? WHERE pessoa_id = ?',
+            [socket.id, data.usuario_id],
+            (error, rows) => {
+                if (error) {
+                    console.log(error);
+                }
 
-                res.status(500).json({ "error_code": error.code });
+                console.log(data.usuario_id + ' ' + socket.id);
             }
-            res.status(200).json(rows);
-        }
-    ); */
+        ); 
+    });
 });  
 
 

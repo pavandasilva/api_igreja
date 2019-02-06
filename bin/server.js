@@ -9,7 +9,7 @@ app.set('port', port);
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-io.on('connection', (socket) => {
+io.on('connection', function(socket) {
     console.log(socket.id);
 
     socket.on('vinc_socket_id'), function(data){

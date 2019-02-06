@@ -9,14 +9,20 @@ app.set('port', port);
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
     console.log(socket.id);
 
-    /* socket.on('vinc_socket_id'), function(data){
+    socket.on('vinc_socket_id'), function (data) {
         console.log(data);
-    }; */ 
+    };
+
+    socket.on('disconnect', function (data) {
+        io.emit('user disconnected ' + data.id);
+    });
 });
 
-server.listen(port, function(){
-    console.log('Listening to port '+ port);
+
+
+server.listen(port, function () {
+    console.log('Listening to port ' + port);
 })

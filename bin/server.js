@@ -17,17 +17,6 @@ io.on('connection', function(socket) {
     }; 
 });
 
-server.listen(port);
-server.on('listening', onListening);
-
-console.log('API rodando na porta ' + port);
-
-function onListening() {
-    const addr = server.address();
-
-    const bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-
-    debug('Listening on ' + bind);
-}
+server.listen(port, function(){
+    console.log('Listening to port '+ port);
+})

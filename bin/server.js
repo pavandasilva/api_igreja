@@ -8,13 +8,18 @@ app.set('port', port);
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-var socket = require('socket.io'), http, server
+var socket = require('socket.io'), http = require('http'),
+  server_io = http.createServer(), socket = socket.listen(server_io);
 socket.on('connection', function(connection) {
    console.log('User Connected');
    
    connection.on('message', function(msg){
      socket.emit('message', msg);
    });
+});
+
+server.listen(4000, function(){
+    console.log('Server started');
 });
 
 server.listen(port);

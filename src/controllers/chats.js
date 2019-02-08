@@ -51,7 +51,7 @@ exports.post = (req, res) => {
                         res.status(500).json({ "error_code": error.code });
                     }
                    
-                    io.emit(req.body.pessoa_id_dest, json(rows[0]));
+                    io.emit(req.body.pessoa_id_dest, json(rows));
                     res.status(201).json(rows);
                 }
             );

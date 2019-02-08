@@ -42,7 +42,7 @@ exports.post = (req, res) => {
             let insertId = result.insertId;
 
             mysql_connection.query(
-                'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto, (SELECT socket_id FROM pessoas where pessoa_id = ?) as socket_id FROM chats WHERE chat_id = ?',
+                'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto FROM chats WHERE chat_id = ?',
                 [req.body.pessoa_id_dest, insertId],
                 (error, rows) => {
                     if (error) {
@@ -50,12 +50,9 @@ exports.post = (req, res) => {
 
                         res.status(500).json({ "error_code": error.code });
                     }
-                    if (rows.length < 1)
-                        return;
-                    
-                    if (rows[0].socket_id != ''){
-                        io.emit(req.body.pessoa_id_dest, json(rows[0]));
-                    }
+                   
+                    io.emit(req.body.pessoa_id_dest, json(rows[0]));
+                    res.status(201).json(rows);
                 }
             );
         });

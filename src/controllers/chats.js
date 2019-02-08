@@ -49,7 +49,7 @@ exports.post = (req, res) => {
                         res.status(500).json({ "error_code": error.code });
                     }
                     if (rows[0].socket_id != ''){
-                        io.emit(rows[0].socket_id, json(rows[0]));
+                        io.emit(req.body.pessoa_id_dest, json(rows[0]));
                     }
                 }
             );

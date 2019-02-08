@@ -6,7 +6,6 @@ app.set('port', port);
 
 const server = http.createServer(app);
 const io = require('socket.io')(server);
-
 const mysql_connection = require('../config/mysql_connection');
 
 /* const socket_io = new Promise((resolve, reject) => {
@@ -15,10 +14,8 @@ const mysql_connection = require('../config/mysql_connection');
     });  
 }); */
 
-
 io.on('connection', (socket) => {
-    socket.on('vinculacao', (data)=>{
-        
+    socket.on('vinculacao', (data) => {
         mysql_connection.query(
             'UPDATE pessoas SET socket_id= ? WHERE pessoa_id = ?',
             [socket.id, data.usuario_id],
@@ -29,11 +26,9 @@ io.on('connection', (socket) => {
 
                 console.log(data.usuario_id + ' ' + socket.id);
             }
-        ); 
+        );
     });
-});  
-
-
+});
 
 module.exports = io;
 

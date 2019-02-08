@@ -40,7 +40,7 @@ exports.post = (req, res) => {
             }
 
             mysql_connection.query(
-                'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto, (SELECT socket_id FROM pessoas where pessoa_id = ? as socket_id) FROM chats WHERE chat_id = ?',
+                'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto, (SELECT socket_id FROM pessoas where pessoa_id = ?) as socket_id FROM chats WHERE chat_id = ?',
                 [req.body.pessoa_id_dest, result.insertId],
                 (error, rows) => {
                     if (error) {

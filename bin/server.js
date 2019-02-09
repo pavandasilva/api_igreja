@@ -14,6 +14,8 @@ const socket_io = new Promise((resolve) => {
             console.log(socket.id + ' desconectado');
         });
 
+        io.emit('chat', 'teste');
+
         socket.on('vinculacao', (data) => {
             mysql_connection.query(
                 'UPDATE pessoas SET socket_id= ? WHERE pessoa_id = ?',
@@ -23,7 +25,7 @@ const socket_io = new Promise((resolve) => {
                         console.log(error);
                     }
 
-                    console.log(data.usuario_id + ' ' + socket.id);
+                    console.log('Usuário: ' + data.usuario_id + ' vinculado ao socket: ' + socket.id);
                 }
             );
             /*   io.emit('chat', 'teste'); */

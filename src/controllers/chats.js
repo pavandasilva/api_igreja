@@ -55,10 +55,11 @@ exports.post = (req, res) => {
                             console.log(data);
                         });
                     }); */
+
+                    require('../bin/server').then((socket)=>{
+                        socket.emit('chat:' + req.body.pessoa_id_dest, "this is a test");
+                    });
                     
-                    io.sockets.emit('teste','teste');
-
-
                     res.status(201).json(rows);
                 }
             );

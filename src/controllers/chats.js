@@ -56,7 +56,7 @@ exports.post = (req, res) => {
                         });
                     }); */
 
-                    io.emit('chat', JSON.stringify(rows[0]));
+                    io.emit('chat:' + req.body.pessoa_id_dest, JSON.stringify(rows[0]));
 
                     /* require('../../bin/server').then((socket)=>{
                         socket.emit('chat', JSON.stringify(rows[0]));

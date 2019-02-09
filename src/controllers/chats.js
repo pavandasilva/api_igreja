@@ -60,7 +60,7 @@ exports.post = (req, res) => {
                         socket.emit('chat', JSON.stringify(rows[0]));
                     });
                     
-                    res.status(201).json(rows);
+                    res.status(201).json(rows[0]);
                 }
             );
         });

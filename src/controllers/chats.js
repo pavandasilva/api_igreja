@@ -49,12 +49,15 @@ exports.post = (req, res) => {
                         res.status(500).json({ "error_code": error.code });
                     }
 
-                    io.sockets.on('connection', function (socket) {
+                    /* io.sockets.on('connection', function (socket) {
                         socket.emit('news', { hello: 'world' });
                         socket.on('my other event', function (data) {
                             console.log(data);
                         });
-                    });
+                    }); */
+                    
+                    io.sockets.emit('teste','teste');
+
 
                     res.status(201).json(rows);
                 }

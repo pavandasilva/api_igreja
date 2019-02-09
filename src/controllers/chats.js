@@ -57,7 +57,7 @@ exports.post = (req, res) => {
                     }); */
 
                     require('../../bin/server').then((socket)=>{
-                        socket.emit('chat', "this is a test");
+                        socket.emit('chat', rows);
                     });
                     
                     res.status(201).json(rows);

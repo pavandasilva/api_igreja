@@ -50,7 +50,7 @@ exports.post = (req, res) => {
                         res.status(500).json({ "error_code": error.code });
                     }
                    
-                    io.emit('rows[0].pessoa_id_dest', 'JSON.parse(JSON.stringify(rows))');
+                    io.io.emit('rows[0].pessoa_id_dest', 'JSON.parse(JSON.stringify(rows))');
                     res.status(201).json(rows);
                 }
             );

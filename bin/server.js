@@ -14,7 +14,7 @@ const mysql_connection = require('../config/mysql_connection');
     });  
 }); */
 
-/* io.on('connection', (socket) => {
+io.on('connection', (socket) => {
     socket.on('vinculacao', (data) => {
         mysql_connection.query(
             'UPDATE pessoas SET socket_id= ? WHERE pessoa_id = ?',
@@ -28,7 +28,7 @@ const mysql_connection = require('../config/mysql_connection');
             }
         );
     });
-}); */
+});
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);

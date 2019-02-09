@@ -5,7 +5,7 @@ const port = 3000;
 app.set('port', port);
 
 const server = http.createServer(app);
-const io = require('socket.io')(server);
+global.io = require('socket.io')(server);  
 const mysql_connection = require('../config/mysql_connection');
 
 /* const socket_io = new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ const mysql_connection = require('../config/mysql_connection');
     });  
 }); */
 
-io.on('connection', (socket) => {
+/* io.on('connection', (socket) => {
     socket.on('vinculacao', (data) => {
         mysql_connection.query(
             'UPDATE pessoas SET socket_id= ? WHERE pessoa_id = ?',
@@ -28,9 +28,7 @@ io.on('connection', (socket) => {
             }
         );
     });
-});
-
-module.exports = io;
+}); */
 
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);

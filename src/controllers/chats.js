@@ -49,19 +49,7 @@ exports.post = (req, res) => {
                         res.status(500).json({ "error_code": error.code });
                     }
 
-                    /* io.sockets.on('connection', function (socket) {
-                        socket.emit('news', { hello: 'world' });
-                        socket.on('my other event', function (data) {
-                            console.log(data);
-                        });
-                    }); */
-
-                    io.emit('chat:' + req.body.pessoa_id_dest, JSON.stringify(rows[0]));
-
-                    /* require('../../bin/server').then((socket)=>{
-                        socket.emit('chat', JSON.stringify(rows[0]));
-                    }); */
-                    
+                    io.emit('chat:' + req.body.pessoa_id_rem + 'to' + req.body.pessoa_id_dest, JSON.stringify(rows[0]));
                     res.status(201).json(rows[0]);
                 }
             );

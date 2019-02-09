@@ -22,7 +22,7 @@ const socket_io = new Promise((resolve) => {
                     console.log(data.usuario_id + ' ' + socket.id);
                 }
             );
-            io.emit('chat', 'teste');
+          /*   io.emit('chat', 'teste'); */
         });
 
         resolve(socket);

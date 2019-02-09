@@ -50,22 +50,7 @@ exports.post = (req, res) => {
                         res.status(500).json({ "error_code": error.code });
                     }
 
-                    io.on('connection', (socket) => {
-                        io.emit('rows[0].pessoa_id_dest', 'JSON.parse(JSON.stringify(rows))');
-                        socket.on('vinculacao', (data) => {
-                            mysql_connection.query(
-                                'UPDATE pessoas SET socket_id= ? WHERE pessoa_id = ?',
-                                [socket.id, data.usuario_id],
-                                (error, rows) => {
-                                    if (error) {
-                                        console.log(error);
-                                    }
-                    
-                                    console.log(data.usuario_id + ' ' + socket.id);
-                                }
-                            );
-                        });
-                    });
+                    io.emit(req.body.pessoa_id_dest, { 'message': 'hello' });
             
                     res.status(201).json(rows);
                 }

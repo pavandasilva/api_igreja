@@ -1,16 +1,12 @@
 const app = require('../src/app');
-const app_socket_io = require('../src/app');
 const http = require('http');
 const port = 3000;
-const port_socket_io = 4000;
 
 app.set('port', port);
-app_socket_io.set('port', port_socket_io);
 
 const server = http.createServer(app);
-const server_socket_io = http.createServer(app_socket_io);
 //const io = require('socket.io')(server);
-global.io = require('socket.io')(server_socket_io);
+global.io = require('socket.io')(server);
 const mysql_connection = require('../config/mysql_connection');
 
 io.on('connection', function (socket) {
@@ -36,5 +32,4 @@ io.on('connection', function (socket) {
 server.listen(port, function () {
     console.log('Rodando na porta ' + port);
 });
-
 

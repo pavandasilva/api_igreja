@@ -56,9 +56,11 @@ exports.post = (req, res) => {
                         });
                     }); */
 
-                    require('../../bin/server').then((socket)=>{
+                    io.emit('chat', 'teste');
+
+                    /* require('../../bin/server').then((socket)=>{
                         socket.emit('chat', JSON.stringify(rows[0]));
-                    });
+                    }); */
                     
                     res.status(201).json(rows[0]);
                 }

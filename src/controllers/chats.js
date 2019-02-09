@@ -43,15 +43,14 @@ exports.post = (req, res) => {
 
             mysql_connection.query(
                 'SELECT chat_id, pessoa_id_dest, pessoa_id_rem, dt_cadastro, texto FROM chats WHERE chat_id = ?',
-                [req.body.pessoa_id_dest, insertId],
+                [insertId],
                 (error, rows) => {
                     if (error) {
                         console.log(error);
-
                         res.status(500).json({ "error_code": error.code });
                     }
                    
-                    io.emit(req.body.pessoa_id_dest, json(rows));
+                    io.emit(rows[0].pessoa_id_dest, json(rows));
                     res.status(201).json(rows);
                 }
             );

@@ -29,7 +29,5 @@ io.on('connection', function (socket) {
     });
 });
 
-server.listen(port, function () {
-    console.log('Rodando na porta ' + port);
-});
+server.listen(port + process.env.NODE_APP_INSTANCE);
 

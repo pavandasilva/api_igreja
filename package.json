@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./bin/server.js"
   },
-  "author": "Rogério Pavan da Silva",
+  "author": "Rogerio Pavan da Silva",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.0",

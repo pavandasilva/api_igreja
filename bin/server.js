@@ -12,11 +12,36 @@ const mysql_connection = require('../config/mysql_connection');
 io.on('connection', function (socket) {
     socket.on('disconnect', function () {
         console.log(socket.id + ' desconectado');
+
+        mysql_connection.query(
+            'UPDATE socket_pessoas SET conectado = "N" WHERE socket_id = ?',
+            [socket.id],
+            (error, rows) => {
+                if (error) {
+                    console.log(error);
+                }
+
+                console.log('Usuário: ' + data.usuario_id + ' vinculado ao socket: ' + socket.id);
+            }
+        ); 
+
+        mysql_connection.query(
+            'INSERT INTO socket_pessoas(socket_id, pessoa_id, conectado) VALUES(?, ?, ?)',
+            [socket.id, data.usuario_id, 'S'],
+            (error, rows) => {
+                if (error) {
+                    console.log(error);
+                }
+
+                console.log('Usuário: ' + data.usuario_id + ' vinculado ao socket: ' + socket.id);
+            }
+        ); 
+
     });
     
     socket.on('vinculacao', (data) => {
         mysql_connection.query(
-            'UPDATE pessoas SET socket_id= ? WHERE pessoa_id = ?',
+            'INSERT INTO socket_pessoas(socket_id, pessoa_id) VALUES(?, ?)',
             [socket.id, data.usuario_id],
             (error, rows) => {
                 if (error) {

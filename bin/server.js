@@ -14,7 +14,7 @@ io.on('connection', function (socket) {
         console.log(socket.id + ' desconectado');
 
         mysql_connection.query(
-            'UPDATE socket_pessoas SET conectado = "N" WHERE socket_id = ?',
+            'UPDATE socket_pessoas SET conectado = "N", data_desconexao = NOW() WHERE socket_id = ?',
             [socket.id],
             (error, rows) => {
                 if (error) {

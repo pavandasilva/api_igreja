@@ -41,8 +41,22 @@ io.on('connection', function (socket) {
     
     socket.on('vinculacao', (data) => {
         mysql_connection.query(
-            'INSERT INTO socket_pessoas(socket_id, pessoa_id) VALUES(?, ?)',
-            [socket.id, data.usuario_id],
+            'INSERT INTO socket_pessoas(socket_id, pessoa_id, tag) VALUES(?, ?, ?)',
+            [socket.id, data.usuario_id, data.tag],
+            (error, rows) => {
+                if (error) {
+                    console.log(error);
+                }
+
+                console.log('Usuário: ' + data.usuario_id + ' vinculado ao socket: ' + socket.id);
+            }
+        ); 
+    });
+
+    socket.on('desvinculacao', (data) => {
+        mysql_connection.query(
+            'UPDATE socket_pessoas SET conectado = "N", data_desconexao = NOW() where tag = ? AND socket_id = ?',
+            [data.tag, socket.id],
             (error, rows) => {
                 if (error) {
                     console.log(error);

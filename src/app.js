@@ -30,4 +30,6 @@ app.use('/oracoes', oracoes);
 app.use('/eventos', eventos);
 app.use('/chats', chats);
 
+var fs = require('graceful-fs');
+
 module.exports = app;

@@ -13,7 +13,7 @@ exports.get = ((req, res) => {
         '(select COUNT(*) from oracoes_pessoas where oracoes.oracao_id = oracoes_pessoas.oracao_id) as qtde_pessoas ' +
         'FROM oracoes ' +
         'INNER JOIN pessoas ' +
-        'ON oracoes.pessoa_id = pessoas.pessoa_id ' +
+        'ON oracoes.pessoa_id = pessoas.pessoa_id';
 
     mysql_connection.query(sql, (error, rows, fields) => {
         res.header("Access-Control-Allow-Origin", "*");

@@ -10,7 +10,7 @@ exports.get = ((req, res) => {
             'pessoas.pessoa_id, ' +
             'pessoas.nome, ' +
             'pessoas.foto, ' +
-            'COUNT(oracoes_pessoas.oracao.pessoa_id) as qtde_pessoas ' +
+            'COUNT(oracoes_pessoas.oracao_pessoa_id) as qtde_pessoas ' +
         'FROM oracoes ' +
         'INNER JOIN pessoas ' +
         'ON oracoes.pessoa_id = pessoas.pessoa_id ' +

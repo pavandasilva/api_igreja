@@ -1,20 +1,20 @@
 const mysql_connection = require('../../config/mysql_connection');
 
 exports.get = ((req, res) => {
-   /* GET audios */
-    const sql = 
+    /* GET audios */
+    const sql =
         'SELECT ' +
-            'audios.audio_id, ' + 
-            'audios.titulo, ' +
-            'audios.autor, ' +
-            'audios.url, ' +
-            'audios.dt_cadastro, ' +
-            'categorias_audi.categoria_audi_id, ' +
-            'categorias_audi.nome as categoria ' +
+        'audios.audio_id, ' +
+        'audios.titulo, ' +
+        'audios.autor, ' +
+        'audios.url, ' +
+        'audios.dt_cadastro, ' +
+        'categorias_audi.categoria_audi_id, ' +
+        'categorias_audi.nome as categoria ' +
         'FROM audios ' +
         'INNER JOIN categorias_audi ' +
         'ON audios.categoria_audi_id = categorias_audi.categoria_audi_id';
-    
+
     mysql_connection.query(sql, (error, rows, fields) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -39,3 +39,20 @@ exports.put = (req, res) => {
         req: req.body,
     });
 };
+
+exports.post_like = (req, res) => {
+    mysql_connection.query(
+        'INSERT INTO audios_like(audio_id, pessoa_id) VALUES(?, ?)',
+        [req.pessoa_id, req.body.audio_id],
+        (error, result) => {
+            if (error) {
+                console.log(error);
+                res.status(500).json({ "error_code": error.code });
+                return;
+            }
+
+            res.status(201).json({ audio_like_id: result.insertId });
+        });
+
+};
+

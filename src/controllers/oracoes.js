@@ -45,25 +45,28 @@ exports.post_orar = (req, res) => {
         return;
     }
 
-    mysql_connection.query('SELECT  COUNT(*) as qtde from oracoes_pessoas where pessoa_id = ?', (error, rows, fields) => {
-        if (rows[0].qtde > 0) {
-            res.status(409).json({message: 'Você já está orando por esta pessoa!'});
-            return;
-        }
+    mysql_connection.query('SELECT  COUNT(*) as qtde from oracoes_pessoas where pessoa_id = ? and oracao_id = ?',
+        [req.pessoa_id, req.body.oracao_id],
+        (rows) => {
+            
+            if (rows[0].qtde > 0) {
+                res.status(409).json({ message: 'Você já está orando por esta pessoa!' });
+                return;
+            }
 
-        mysql_connection.query(
-            'INSERT INTO oracoes_pessoas(oracao_id, pessoa_id) VALUES(?, ?)',
-            [req.body.oracao_id, req.pessoa_id],
-            (error, result) => {
-                if (error) {
-                    console.log(error);
-                    res.status(500).json({ "error_code": error.code });
-                    return;
-                }
+            mysql_connection.query(
+                'INSERT INTO oracoes_pessoas(oracao_id, pessoa_id) VALUES(?, ?)',
+                [req.body.oracao_id, req.pessoa_id],
+                (error, result) => {
+                    if (error) {
+                        console.log(error);
+                        res.status(500).json({ "error_code": error.code });
+                        return;
+                    }
 
-                let insertId = result.insertId;
-                res.status(201).json({ oracao_pessoa_id: insertId });
-            });
-    });
+                    let insertId = result.insertId;
+                    res.status(201).json({ oracao_pessoa_id: insertId });
+                });
+        });
 
 };

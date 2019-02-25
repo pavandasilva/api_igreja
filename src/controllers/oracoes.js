@@ -46,7 +46,7 @@ exports.put = (req, res) => {
 
 exports.post_orar = (req, res) => {
     /*  Verifica se o usuário dono da mensagem é o mesmo usuario dono do token */
-    if (req.body.pessoa_id_rem != req.pessoa_id) {
+    if (req.body.pessoa_id !== req.pessoa_id) {
         res.status(401).json({ error: "Você não tem autorização para completar essa ação" });
         return;
     }

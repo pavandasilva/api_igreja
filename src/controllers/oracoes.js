@@ -15,7 +15,7 @@ exports.get = ((req, res) => {
         'INNER JOIN pessoas ' +
         'ON oracoes.pessoa_id = pessoas.pessoa_id ' +
         'LEFT JOIN oracoes_pessoas ' +
-        'ON oracoes.pessoa_id = oracoes_pessoas.pessoa_id '
+        'ON oracoes.pessoa_id = oracoes_pessoas.pessoa_id ' +
         'GROUP BY oracoes.oracao_id, oracoes.texto, oracoes.dt_cadastro, pessoas.pessoa_id, pessoas.nome, pessoas.foto';
    
     mysql_connection.query(sql, (error, rows, fields) => {

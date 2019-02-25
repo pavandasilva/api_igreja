@@ -47,7 +47,11 @@ exports.post_orar = (req, res) => {
 
     mysql_connection.query('SELECT  COUNT(*) as qtde from oracoes_pessoas where pessoa_id = ? and oracao_id = ?',
         [req.pessoa_id, req.body.oracao_id],
-        (rows) => {
+        (error, rows) => {
+            if (error){
+                res.status(500).json({"error_code": error.code });
+                return;
+            }
             
             if (rows[0].qtde > 0) {
                 res.status(409).json({ message: 'Você já está orando por esta pessoa!' });

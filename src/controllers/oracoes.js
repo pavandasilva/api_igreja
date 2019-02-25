@@ -16,9 +16,6 @@ exports.get = ((req, res) => {
         'ON oracoes.pessoa_id = pessoas.pessoa_id';
 
     mysql_connection.query(sql, (error, rows, fields) => {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
         res.status(200).json(rows);
     });
 
@@ -48,17 +45,25 @@ exports.post_orar = (req, res) => {
         return;
     }
 
-    mysql_connection.query(
-        'INSERT INTO oracoes_pessoas(oracao_id, pessoa_id) VALUES(?, ?)',
-        [req.body.oracao_id, req.pessoa_id],
-        (error, result) => {
-            if (error) {
-                console.log(error);
-                res.status(500).json({ "error_code": error.code });
-                return;
-            }
+    mysql_connection.query('SELECT  COUNT(*) as qtde from oracoes_pessoas where pessoa_id = ?', (error, rows, fields) => {
+        if (rows[0].qtde > 0) {
+            res.status(409).json({message: 'Você já está orando por esta pessoa!'});
+            return;
+        }
 
-            let insertId = result.insertId;
-            res.status(201).json({ oracao_pessoa_id: insertId });
-        });
+        mysql_connection.query(
+            'INSERT INTO oracoes_pessoas(oracao_id, pessoa_id) VALUES(?, ?)',
+            [req.body.oracao_id, req.pessoa_id],
+            (error, result) => {
+                if (error) {
+                    console.log(error);
+                    res.status(500).json({ "error_code": error.code });
+                    return;
+                }
+
+                let insertId = result.insertId;
+                res.status(201).json({ oracao_pessoa_id: insertId });
+            });
+    });
+
 };
